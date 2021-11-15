@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset = "UTF-8">
+    <title> Are you compatable with Griffin? </title>
+</head>
+<!--
+    Author: Griffin Ebel
+    Project: Matchmaker for the web
+-->
+</html>
+
+<style>
+section { float:none;
+  border-style: double;
+  border-color:red;
+  text-align: center;
+  align-content: center;
+   background-color:rgb(255, 205, 236);
+   padding: 30pt; 
+   }
+
+button{ background-color:rgb(255, 182, 193);
+  border:lightgrey;
+  border-style: double;
+}
+
+select{ background-color: rgb(255, 182, 193);
+}  
+</style>
+
+<section>
+<body>
+    <h1>The "Are you compatable with Griffin?" Experience</h1>
+    <p>This webpage will help answer this by computing our compatibility levels by comparing the response you chose to what I would have chosen.</p>        
+    <h3>Intructions</h3>
+    <p>For each subject, select the sentence from the drop down that best alligns with your views on the topic.</p>
+    <p>After selecting the response that best alligns with your views, press "Submit" to lock in your answer and receive an indivudal compatibility score for that subject.</p>
+    <p>Once you have locked in each response, click "Calculate Compatability" to get your results.</p>
+    <p>Your weighted and unweighted total compatability score will the be presented, determining if we are truly compatable or not</p>
+    <p>Have Fun!</p>
+
+    <label> The Muppets </label><br/> 
+    <select id='q1'>
+        <option value="1">They are beyond over-rated</option>
+        <option value="4">They are pretty solid</option> </option>
+        <option value="5">They are wildly underapprececiated. </option>
+        <option value="3">I could take them or leave them</option>
+        <option value="2">They are embarrasing</option>
+    </select>
+
+    <br /></br>
+    <div id = disapears1>
+    <button onclick= "question1Submit()"> Submit </button>
+    </div>
+
+    <br />
+    <h4 id= statement1></h4>
+    <h4 id= question1Compatability></h4>
+    <br />
+
+    <label> The Green Bay Packers </label><br/>
+    <select id='q2'>
+        <option value="3">I couldn't care less about Football</option>
+        <option value="5">I love watching Aaron Fraudgers play </option>
+        <option value="2">Go Pack Go</option>
+        <option value="4">Bear Down</option> </option>
+        <option value="1">I love watching Aaron Rodgers play </option>
+    </select>
+
+    <br /></br>
+    <div id = disapears2>
+    <button onclick= "question2Submit()"> Submit</button>
+    </div>
+
+    <br />
+    <h4 id= statement2></h4>
+    <h4 id= question2Compatability></h4>
+    <br />
+    
+    <label> Brownies </label><br/>
+    <select id='q3'>
+        <option value="3">They are a solid dessert option</option>
+        <option value="1">Hands down the best dessert </option>
+        <option value="5">They are pretty low on the totem pole of desserts</option> 
+        <option value="4"> They are the most over-rated desert of all time</option>
+        <option value="2">They are in the upper echalan of the dessert world</option>
+    </select>
+
+    <br /></br>
+    <div id = disapears3>
+    <button onclick= "question3Submit()"> Submit</button>
+    </div>
+
+    <br />
+    <h4 id= statement3></h4>
+    <h4 id= question3Compatability></h4>
+    <br />
+
+    <label> 50's music </label><br/>
+    <select id='q4'>
+        <option value="4">It's clasy</option>
+        <option value="5">It's wonderful</option>
+        <option value="1"> Leave it in the 50's</option>
+        <option value="3">I dont mind it</option>
+        <option value="2">It's pretty boring</option>
+    </select>
+
+    <br /></br>
+    <div id = disapears4>
+    <button onclick= "question4Submit()"> Submit</button>
+    </div>
+
+    <br />
+    <h4 id= statement4></h4>
+    <h4 id= question4Compatability></h4>
+    <br />
+
+    <label>Cats</label><br/>
+    <select id='q5'>
+        <option value="5">They are the superior pet</option>
+        <option value="1">They're little scumbags </option>
+        <option value="3">I Don't have a quarrel with them</option>
+        <option value="2">I dont trust em</option>
+        <option value="4">They are pretty tight</option> 
+    </select>
+
+    <br /></br>
+    <div id = disapears5>
+    <button onclick= "question5Submit()"> Submit</button>
+    </div>
+
+  <br/><br/> 
+  <h4 id= statement5></h4>
+  <h4 id= question5Compatability></h4>
+  <br/>
+
+<button onclick= "compatabilityButton()">Calculate Totals</button> 
+
+<h4 id= "Compatability"></h4>
+<h4 id= "weightedCompatibility"></h4>
+<h4 id = "Compatibilitystatement"></h4>
+<h4 id = "Goodbye"></h4>
+
+</body>
+</section>
+
+<script>
+console.log("Griffin's Matchmaker");
+
+function question1Submit()
+{
+    const WANTED = [
+    5,
+    5,
+    5,
+    5,
+    5
+    ];
+    
+    var statement1Para = document.getElementById("statement1");
+    let question1Response = document.getElementById("q1").selectedOptions[0].value;
+    let questionCompatability1= 5 - Math.abs(question1Response - WANTED[0]);
+    
+    console.log("Questions 1 Answers:");
+    console.log(document.getElementById("q1").selectedOptions[0].text);
+    console.log(document.getElementById("q1").selectedOptions[0].value);
+    console.log(question1Response);
+    console.log("c1="+ questionCompatability1);
+
+    console.log("question1Submit()");
+   
+    document.getElementById("disapears1").style.display="none";
+   
+    document.getElementById("question1Compatability").innerHTML = "Subject Compatability: " + questionCompatability1/5 * 100 + "%";
+   
+    if(questionCompatability1 == "5"){  
+    statement1Para.innerHTML="Exactly"
+    }else if(questionCompatability1 =="4"){
+        statement1Para.innerHTML="Solid is still an understatement";
+    }else if(questionCompatability1 =="3") {
+        statement1Para.innerHTML="How could you leave them?";
+    }else if(questionCompatability1 =="2") {
+        statement1Para.innerHTML= "Despicable me? No. Despicable you.";
+    }else if(questionCompatability1 =="1") {
+        statement1Para.innerHTML= "I'd be embarrassed to be with you";}
+  
+}
+
+function question2Submit(){
+    const WANTED = [
+    5,
+    5,
+    5,
+    5,
+    5
+    ];
+
+    var statement2Para = document.getElementById("statement2");
+
+    let question2Response = document.getElementById("q2").selectedOptions[0].value;
+
+    let questionCompatability2= 5 - Math.abs(question2Response - WANTED[1]);
+
+    console.log("question2Submit()");
+    
+    console.log("Questions 2 Answers:");
+    console.log(document.getElementById("q2").selectedOptions[0].text);
+    console.log(document.getElementById("q2").selectedOptions[0].value);
+    console.log(question2Response);
+
+    console.log("c2="+ questionCompatability2);
+
+    document.getElementById("disapears2").style.display="none";
+    
+    document.getElementById("question2Compatability").innerHTML = "Subject Compatability: " + questionCompatability2/5 * 100 + "%";
+    
+    if(question2Response =="5"){  
+    statement2Para.innerHTML="The Green Bay Refs are also my favorite team."
+    }else if(question2Response =="4"){
+        statement2Para.innerHTML="Yes.";
+    }else if(question2Response =="3") {
+        statement2Para.innerHTML="Respectable take.";
+    }else if(question2Response =="2") {
+        statement2Para.innerHTML="No.";
+    }else if(question2Response =="1") {
+        statement2Para.innerHTML="If you like the Packers ill avoid you like Rodgers did the Vaccine";}
+    document.getElementById("question2Compatability").innerHTML = "Subject Compatability: " + questionCompatability2/5 * 100 + "%";
+}
+    
+function question3Submit(){
+    const WANTED = [
+    5,
+    5,
+    5,
+    5,
+    5
+    ];
+
+    var statement3Para = document.getElementById("statement3");
+
+    let question3Response = document.getElementById("q3").selectedOptions[0].value;
+
+    let questionCompatability3= 5 - Math.abs(question3Response - WANTED[2]);
+    console.log("question3Submit()");
+    
+    console.log("Questions 3 Answers:");
+    console.log(document.getElementById("q3").selectedOptions[0].text);
+    console.log(document.getElementById("q3").selectedOptions[0].value);
+    console.log(question3Response);
+
+    console.log("c3="+ questionCompatability3);
+
+    document.getElementById("disapears3").style.display="none";
+    
+    document.getElementById("question3Compatability").innerHTML = "Subject Compatability: " + questionCompatability3/5 * 100 + "%";
+   
+       if(question3Response =="5" ){  
+    statement3Para.innerHTML="Your opinions are pretty high on the totem pole."
+    }else if(question3Response =="4"){
+        statement3Para.innerHTML="Definitely over-rated but there is worse";
+    }else if(question3Response =="3") {
+        statement3Para.innerHTML="As long as you don't hold them in too high of regard";
+    }else if(question3Response =="2") {
+        statement3Para.innerHTML="You are in the lower echelon of this world";
+    }else if(question3Response =="1") {
+        statement3Para.innerHTML="Bad take.";}
+    document.getElementById("question3Compatability").innerHTML = "Subject Compatability: " + questionCompatability3/5 * 100 + "%";
+}
+
+function question4Submit(){
+    const WANTED = [
+    5,
+    5,
+    5,
+    5,
+    5
+    ];
+
+    var statement4Para = document.getElementById("statement4");
+
+    let question4Response = document.getElementById("q4").selectedOptions[0].value;
+
+    let questionCompatability4= 5 - Math.abs(question4Response - WANTED[3]);
+    console.log("question4Submit()");
+    
+    console.log("Questions 4 Answers:");
+    console.log(document.getElementById("q4").selectedOptions[0].text);
+    console.log(document.getElementById("q4").selectedOptions[0].value);
+    console.log(question4Response);
+
+    console.log("c4="+ questionCompatability4);
+
+    document.getElementById("disapears4").style.display="none";
+
+    document.getElementById("question4Compatability").innerHTML = "Subject Compatability: " + questionCompatability4/5 * 100 + "%";
+
+    if(question4Response == "5"){  
+    statement4Para.innerHTML="Wonderful Indeed"
+    }else if(question4Response == "4"){
+        statement4Para.innerHTML="Takes class to recognize class";
+    }else if(question4Response =="3") {
+        statement4Para.innerHTML="I don't mind mind your opinions";
+    }else if(question4Response =="2") {
+        statement4Para.innerHTML="It's boring? No. Your'e boring. ";
+    }else if(question4Response =="1") {
+        statement4Para.innerHTML="Leave your opinion in the 50's";}
+
+    document.getElementById("question4Compatability").innerHTML = "Subject Compatability: " + questionCompatability4/5 * 100 + "%";
+}
+
+function question5Submit(){
+    const WANTED = [
+    5,
+    5,
+    5,
+    5,
+    5
+    ];
+
+    var statement5Para = document.getElementById("statement5");
+
+    let question5Response = document.getElementById("q2").selectedOptions[0].value;
+
+    let questionCompatability5= 5 - Math.abs(question5Response - WANTED[4]);
+    console.log("question5Submit()");
+    
+    console.log("Questions 5 Answers:");
+    console.log(document.getElementById("q5").selectedOptions[0].text);
+    console.log(document.getElementById("q5").selectedOptions[0].value);
+    console.log(question5Response);
+
+    console.log("c5="+ questionCompatability5);
+
+    document.getElementById("disapears5").style.display="none";
+
+    document.getElementById("question5Compatability").innerHTML = "Subject Compatability: " + questionCompatability5/5 * 100 + "%";
+   
+    if(question5Response == "5"){  
+    statement5Para.innerHTML="Right on the money"
+    }else if(question5Response == "4"){
+        statement5Para.innerHTML="They are tight indeed";
+    }else if(question5Response =="3") {
+        statement5Para.innerHTML="I have no quarrel with you then";
+    }else if(question5Response =="2") {
+        statement5Para.innerHTML="I dont'trust you";
+    }else if(question5Response =="1") {
+        statement5Para.innerHTML="Say's the one";}
+    document.getElementById("question5Compatability").innerHTML = "Subject Compatability: " + questionCompatability5/5 * 100 + "%";
+}  
+
+function compatabilityButton() {
+    const WANTED = [
+    5,
+    5,
+    5,
+    5,
+    5
+    ];
+    const MAX = 25;
+    const WEIGHTED_MAX = 45;
+
+    var compatibilityStatementP = document.getElementById("Compatibilitystatement");
+    var statement1Para = document.getElementById("statement1");
+    var statement2Para = document.getElementById("statement2");
+    var statement3Para = document.getElementById("statement3");
+    var statement4Para = document.getElementById("statement4");
+    var statement5Para = document.getElementById("statement5");
+
+    let question1Response = document.getElementById("q1").selectedOptions[0].value;
+    let question2Response = document.getElementById("q2").selectedOptions[0].value;
+    let question3Response = document.getElementById("q3").selectedOptions[0].value;
+    let question4Response = document.getElementById("q4").selectedOptions[0].value;
+    let question5Response = document.getElementById("q5").selectedOptions[0].value;
+
+    let questionCompatability1= 5 - Math.abs(question1Response - WANTED[0]);
+    let questionCompatability2= 5 - Math.abs(question2Response - WANTED[1]);
+    let questionCompatability3= 5 - Math.abs(question3Response - WANTED[2]);
+    let questionCompatability4= 5 - Math.abs(question4Response - WANTED[3]);
+    let questionCompatability5= 5 - Math.abs(question5Response - WANTED[4]);
+    console.log("compatabilityButton()");
+    
+    let combinedCompatibility = questionCompatability1+questionCompatability2+questionCompatability3+questionCompatability4+questionCompatability5;
+
+    let weightedCompatability = (3*questionCompatability1)+ (2*questionCompatability2)+ (1* questionCompatability3)+ (1*questionCompatability4)+(2* questionCompatability5);
+
+    combinedCompatibility *= 100/ MAX;
+    combinedCompatibility = Math.round(combinedCompatibility);
+    console.log("TC: "+ combinedCompatibility);
+
+    weightedCompatability *= 100/WEIGHTED_MAX;
+    weightedCompatability = Math.round(weightedCompatability);
+    console.log("WC: " + weightedCompatability);
+
+    document.getElementById("Compatability").innerHTML = "Compatibility: " + combinedCompatibility + "%";
+    document.getElementById("weightedCompatibility").innerHTML = "Weighted Compatibility: " + weightedCompatability + "%";
+
+    if(weightedCompatability =="100"){  
+        compatibilityStatementP.innerHTML="Were a perfect match"
+    }else if(weightedCompatability < "100" && weightedCompatability >"80"){
+        compatibilityStatementP.innerHTML="Looks promising!";
+    }else if(weightedCompatability < "80" && weightedCompatability >"70"){
+        compatibilityStatementP.innerHTML="We can talk things out";
+    }else if(weightedCompatability < "70" && weightedCompatability >"50") {
+        compatibilityStatementP.innerHTML="Just friends sound good?";
+    }else if(weightedCompatability < "50") {
+        compatibilityStatementP.innerHTML="Might be best is you close this page and forget anything ever happened.";}
+  
+     document.getElementById("Goodbye").innerHTML="Thank you for matchmaking!"
+}
+
+</script>
